@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastre-se</title>
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <!-- Fonte -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../site AJS/assets/icon/VibeMetrics_ icone.svg">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo-inic">
+                <a href="index.html#começo"><img src="assets/icon/VibeMetrics_ icone.svg"></a>
+                <a href="index.html#começo" class="logo"><span>Vibe</span>Metrics</a>
+            </div>
+
+            <ul class="menu">
+                <a id="btnsobre" href="index.html#sobre">Sobre</a>
+                <a id="btnproduto" href="index.html#produto">Produto</a>
+                <a id="btnanalytics" href="index.html#analytics">Analytics</a>
+                <a id="btncontato" href="index.html#contato">Contatos</a>
+            </ul>
+
+            <a id="btnlogin" href="login.html" class="btn-primary">Entrar</a>
+        </nav>
+    </header>
+
+    <section class="cadastro_tela">
+        <div class="tela-img-fundo"></div>
+        <div class="cadastro-container">
+            <h2 class="cadastro-title">CRIE SUA CONTA</h2>
+            <input type="text" id="nome_completo" placeholder="Nome Completo" class="cadastro-input" />
+            <input type="email" id="email" placeholder="Email" class="cadastro-input" />
+            <input type="password" id="senha" placeholder="Senha" class="cadastro-input" />
+            <input type="password" id="confirmar_senha" placeholder="Confirme a Senha" class="cadastro-input" />
+
+            <button class="btn-cadastro" onclick="handleSignUp()">Cadastrar</button>
+
+            <div class="divisor">
+                <span>ou entre com</span>
+            <div class="social-wrapper">
+                <img src="assets/icon/google.svg" class="google-icon" alt="Google" onclick="signInWithGoogle()">
+            </div>
+            </div>
+            
+        </div>
+    </section>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/supabaseCliente.js"></script>
+<script src="script.js"></script>
+<script src="landing.js"></script>
+</body>
+</html>

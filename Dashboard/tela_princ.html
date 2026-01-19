@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>VibeMetrics — Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body>
+
+  <!-- Background neon (linhas + blur) -->
+  <div class="bg">
+    <div class="bg-lines"></div>
+    <div class="bg-vignette"></div>
+  </div>
+
+  <div class="app">
+
+    <!-- Sidebar glass -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">VM</div>
+        <div class="brand-text">
+          <strong>Vibe</strong><span>Metrics</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active">Overview</button>
+        <button class="nav-item">Vídeos</button>
+        <a class="nav-item" href="connections.html">Conexão</a>
+        <button class="nav-item">Analytics</button>
+        <button class="nav-item">Relatórios</button>
+        <button class="nav-item">Fontes</button>
+        <button class="nav-item">Config</button>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="hint">
+          <span class="dot"></span>
+          <small>Glass sidebar • Neon grid background</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+
+      <!-- Topbar -->
+      <header class="topbar">
+        
+        <div class="topbar-left">
+          <h1>Dashboard</h1>
+          <p class="muted">Personalize seus cards e organize do seu jeito.</p>
+        </div>
+
+        <div class="topbar-right">
+          <button class="icon-btn" id="addCardBtn" title="Adicionar card">＋</button>
+
+          <div class="userbox">
+            <button class="avatar-btn" id="userBtn" aria-haspopup="true" aria-expanded="false">
+              <span class="avatar">👤</span>
+            </button>
+
+            <div class="user-menu" id="userMenu">
+              <div class="user-head">
+                <strong id="userName">Usuário</strong>
+                <small class="muted" id="userPlan">Plano Free</small>
+              </div>
+              <div class="user-actions">
+                <button class="icon-btn" id="themeBtn" title="Tema">🎨</button>
+                <button class="menu-btn" id="profileBtn">Configurar perfil</button>
+                <button class="menu-btn danger" id="logoutBtn">Sair</button>
+              </div>
+            </div>
+          </div>
+          <button class="icon-btn" id="snapToggle" title="Grid snapping">⌁</button>
+        </div>
+      </header>
+
+      <!-- White canvas (cards) -->
+      <section class="canvas-wrap">
+        <div class="canvas-head">
+          <div class="pill">Layout: <strong>custom</strong></div>
+          <div class="pill">Arraste os cards • Clique no + para adicionar</div>
+        </div>
+
+        <div class="canvas" id="canvas"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Modal add card -->
+  <div class="modal-backdrop" id="modalBackdrop" hidden></div>
+  <div class="modal" id="addModal" hidden role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <h2>Adicionar card</h2>
+      <button class="icon-btn ghost" id="closeModalBtn">✕</button>
+    </div>
+
+    <form id="addForm" class="modal-body">
+      <label>
+        Métrica
+        <select id="metricSelect" required>
+          <option value="" disabled selected>Selecione...</option>
+          <option value="views">Visualizações</option>
+          <option value="likes">Curtidas</option>
+          <option value="comments">Comentários</option>
+          <option value="shares">Compartilhamentos</option>
+          <option value="engagement">Engajamento</option>
+        </select>
+      </label>
+
+      <label>
+        Rede social
+        <select id="networkSelect" required>
+          <option value="" disabled selected>Selecione...</option>
+          <option value="all">Geral (todas)</option>
+          <option value="tiktok">TikTok</option>
+          <option value="instagram">Instagram</option>
+          <option value="youtube">YouTube</option>
+        </select>
+      </label>
+
+      <label>
+        Título do card (opcional)
+        <input id="titleInput" type="text" placeholder="Ex: Views TikTok (7 dias)" />
+      </label>
+
+      <div class="modal-actions">
+        <button class="btn" type="button" id="cancelBtn">Cancelar</button>
+        <button class="btn primary" type="submit">Adicionar</button>
+      </div>
+
+      <p class="muted tiny">
+        Dica: você poderá reorganizar arrastando os cards.
+      </p>
+    </form>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../assets/js/supabaseCliente.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

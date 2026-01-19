@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VibeMetrics • Conexões</title>
+
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar (repete seu padrão) -->
+    <aside class="sidebar glass">
+      <div class="brand">
+        <div class="logo">VM</div>
+        <div class="name">Vibe Metrics</div>
+      </div>
+
+      <nav class="nav">
+        <a class="nav-item" href="tela_princ.html">Overview</a>
+        <a class="nav-item" href="videos.html">Vídeos</a>
+        <a class="nav-item active" href="connections.html">Conexões</a>
+        <a class="nav-item" href="tela_princ.html#analytics">Analytics</a>
+        <a class="nav-item" href="tela_princ.html#config">Config</a>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <header class="topbar glass">
+        <h1 class="page-title">Conexões</h1>
+
+        <div class="top-actions">
+          <button id="userBtn" class="icon-btn" title="Usuário">👤</button>
+          <div id="userMenu" class="user-menu glass" hidden>
+            <div class="user-head">
+              <div class="user-title">Usuário</div>
+              <div class="user-sub" id="userEmail">—</div>
+            </div>
+            <div class="user-actions">
+              <button id="logoutBtn" class="menu-btn">Sair</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="panel glass">
+          <div class="panel-head">
+            <div>
+              <h2>YouTube</h2>
+              <p class="muted">Conecte seu canal para puxar vídeos e métricas automaticamente (fase 1).</p>
+            </div>
+            <span id="ytStatus" class="badge">Verificando…</span>
+          </div>
+
+          <div class="panel-actions">
+            <button id="connectYouTubeBtn" class="btn primary">Conectar YouTube</button>
+            <button id="disconnectYouTubeBtn" class="btn danger" disabled>Desconectar</button>
+          </div>
+
+          <div class="hint muted">
+            Se aparecer erro de redirect, confira o <b>YOUTUBE_REDIRECT_URI</b> no Google Cloud e nos Secrets do Supabase.
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../assets/js/supabaseCliente.js"></script>
+  <script src="connections.js"></script>
+</body>
+</html>

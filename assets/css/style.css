@@ -1,0 +1,640 @@
+@import "tailwindcss";
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #121214;
+    color: #ffffff;
+}
+
+/* Estado inicial da página (escondida) */
+body {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Classe que vamos adicionar via JS para mostrar a página */
+body.fade-in {
+    opacity: 1;
+}
+
+html {
+    background-color: #020617; /* Mesma cor do seu body */
+}
+
+/* HEADER */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(2, 6, 23, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav {
+    width: 100%;
+    margin: 0 auto;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+}
+
+.nav img {
+    width: 45px;
+    height: 45px;
+}
+
+.logo-inic {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.logo span {
+    color: #9D50FF;
+}
+
+.menu {
+    margin-left: 50px;
+    list-style: none;
+    display: flex;
+    gap: 32px;
+    font-size: 14px;
+    color: #CBD5E1;
+}
+
+.menu li {
+    cursor: pointer;
+}
+
+.menu a {
+    position: relative;
+    text-decoration: none;
+    color: #CBD5E1; /* Cor padrão do seu menu */
+    transition: color 0.3s ease;
+}
+
+/* Criando a linha invisível */
+.menu a::after {
+    content: '';
+    position: absolute;
+    width: 0; /* Começa com largura zero */
+    height: 2px;
+    bottom: -4px; /* Espaçamento abaixo do texto */
+    left: 0;
+    background-color: #9D50FF; /* Cor azul da sua logo */
+    transition: width 0.3s ease; /* Animação de crescimento */
+}
+
+/* Efeito ao passar o mouse */
+.menu a:hover {
+    color: #FFFFFF; /* O texto fica branco */
+}
+
+.menu a:hover::after {
+    width: 100%; /* A linha preenche toda a largura */
+}
+
+/* BOTÕES */
+
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+    background-color: #9c50ff7e;
+;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+.btn-secondary {
+    display: inline-block; 
+    background: #9c50ff7e;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    margin-top: 24px;
+    cursor: pointer;
+
+}
+
+.btn-login {
+    background-color: #9c50ff7e;
+    padding: 12px 20px;
+    border-radius: 10px;
+    
+}
+
+
+.botton_log-cad{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    margin-left: 50px;
+}
+
+
+
+/* HERO */
+.hero {
+    height: 90vh;
+    background-image: url('../image/hero.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* TELA DE CADASTRO */
+.cadastro_tela {
+    
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content:end;
+}
+
+.tela-img-fundo {
+    background-image: url("../image/tela-cadastro.gif");
+    background-size: cover;
+    background-position: center;
+    filter: blur(15px);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+/* Aba para cadastro */
+.cadastro-container {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    position: relative;
+    width: 400px;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    background-color: #02061742;
+    box-shadow: 0 4px 30px rgba(80, 80, 80, 0.336);
+}
+
+.cadastro-input {
+    width: 100%; /* Ocupa toda a largura do container pai */
+    padding: 12px 20px; /* Espaçamento interno para melhor visualização */
+    margin: 8px 0; /* Espaçamento entre os campos */
+    display: inline-block;
+    border: 1px solid #ccc; /* Borda sutil */
+    border-radius: 4px; /* Cantos arredondados suaves */
+    box-sizing: border-box; /* Garante que padding e border não aumentem a largura total */
+    background-color: #02061799; /* Fundo claro para contraste */
+    color: #333; /* Cor do texto */
+}
+
+.cadastro-input:focus {
+    background-color: #FFFFFF; /* Muda o fundo para branco ao focar */
+    border: 1px solid #4CAF50; /* Muda a borda para uma cor de destaque, como verde */
+    outline: none; /* Remove o contorno padrão do navegador */
+}
+
+.btn-cadastro {
+    width: 100%;
+    background-color: #9c50ff7e; /* Cor de destaque (verde) */
+    color: white; /* Texto branco para contraste */
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    font-size: 16px;
+    transition: background-color 0.3s; /* Transição suave na mudança de cor */
+}
+
+/* Efeito ao passar o mouse por cima do botão */
+.btn-cadastro:hover {
+    background-color: #5d29a07e; /* Um verde um pouco mais escuro */
+}
+
+.cadastro-title {
+    padding-top: 100px;
+    color: #fff; /* Título branco para visibilidade no fundo escuro */
+    text-align: center; /* Centraliza o título */
+    margin-bottom: 20px; /* Espaçamento abaixo do título */
+    font-size: 24px;
+    font-weight: bold;
+}
+.social-wrapper {
+    display: flex;            /* 1. Ativa o poder de alinhamento */
+    flex-direction: row;      /* 2. Define o eixo horizontal */
+    justify-content: center;  /* 3. Centraliza na horizontal (eixo principal) */
+    align-items: center;      /* 4. Centraliza na vertical (eixo cruzado) */
+    width: 100%;             /* 5. Garante que ele tenha espaço para centralizar */
+}
+
+/* AQUI você controla o tamanho real da imagem */
+.google-icon {
+    width: 40px !important;        /* Tamanho ideal para ícones sociais premium */
+    max-width: 40px;
+    height:40px !important;       /* Mantém a proporção quadrada */
+    object-fit: contain; /* Garante que a imagem não distorça */
+    cursor: pointer;
+    filter: grayscale(100%); /* Dica premium: deixe cinza e mude no hover */
+    transition: 0.3s;
+    opacity: 0.7;
+    display: inline-block;
+    padding-top: 10px;
+}
+
+.google-icon:hover {
+    filter: grayscale(0%); /* Ganha cor ao passar o mouse */
+    opacity: 1;
+    transform: scale(1.1); /* Leve pulsação */
+}
+
+.google-icon-login {
+    width: 35px !important;        /* Tamanho ideal para ícones sociais premium */
+    max-width: 35px;
+    height: 35px !important;       /* Mantém a proporção quadrada */
+    object-fit: contain; /* Garante que a imagem não distorça */
+    cursor: pointer;
+    filter: grayscale(100%); /* Dica premium: deixe cinza e mude no hover */
+    transition: 0.3s;
+    opacity: 0.7;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.google-icon-login:hover {
+    filter: grayscale(0%); /* Ganha cor ao passar o mouse */
+    opacity: 1;
+    transform: scale(1.1); /* Leve pulsação */
+}
+/* Estilo da linha divisória "ou entre com" */
+.divisor {
+    width: 100%;
+    text-align: center;
+    line-height: 0.1em;
+    margin: 20px 0;
+}
+
+.divisor span {
+    background: #1a1a1a; /* Cor de fundo do seu container */
+    padding: 0 15px;
+    color: #666;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    justify-content: center;
+}
+
+
+
+/* Fim */
+
+
+.login_tela {
+    height: 100vh;
+    background-image: url('assestss/tela-login.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+            rgba(2, 6, 23, 0.9) 0%,
+            rgba(2, 6, 23, 0.7) 40%,
+            rgba(2, 6, 23, 0.2) 100%);
+}
+
+.hero-content {
+    gap: 15px;
+    position: relative;
+    min-width: 850px;
+    padding-left: 80px;
+    padding-top: 72px;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    line-height: 1.1;
+    font-weight: 800;
+}
+
+.hero-content p {
+    margin-top: 18px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #CBD5E1;
+    max-width: 520px;
+}
+
+.section {
+    width: 100%;
+    height: auto;
+    background: #121214;
+}
+
+.texto-landpage {
+    position: relative;
+    max-width: 640px;
+    padding-left: 80px;
+    padding-top: 72px;
+    padding-bottom: 30px;
+}
+
+.texto-landpage h2 {
+    font-size: 36px;
+    line-height: 1.1;
+    font-weight: 800;
+    color: #FFFFFF;
+}
+
+.texto-landpage p {
+    margin-top: 24px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #CBD5E1;
+    max-width: 520px;
+}
+
+.texto-landpage p.destaque {
+    color: #3B82F6;
+    font-weight: 600;
+}
+
+.texto-landpage p.subtitulo {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 16px;
+    color: #FFFFFF;
+}
+
+.sobre {
+    padding: 80px 0;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.sobre-header {
+    margin-bottom: 48px;
+}
+
+.sobre-header h2 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #6b7280;
+    max-width: 520px;
+}
+
+.sobre-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+    margin-bottom: 64px;
+}
+
+.sobre-texto p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.sobre-insights {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.insight-card {
+    border: 1px solid #313133;
+    border-radius: 12px;
+    padding: 16px;
+    background: #1C1C1E; 
+}
+
+.insight-card .label {
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.insight-card strong {
+    display: block;
+    font-size: 1.4rem;
+    margin: 8px 0;
+}
+
+.sobre-destaque {
+    text-align: center;
+    padding-top: 32px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.sobre-destaque p {
+    font-size: 1.1rem;
+}
+
+.produto {
+    padding: 80px 0;
+}
+
+.produto-header {
+    margin-bottom: 48px;
+}
+
+.produto-header h2 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.produto-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+}
+
+.produto-texto p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.produto-modulos {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modulo-card {
+    border: 1px solid #313133;
+    border-radius: 12px;
+    padding: 16px;
+    background: #1C1C1E;
+}
+
+.modulo-card h4 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.modulo-card p {
+    font-size: 0.95rem;
+    color: #4b5563;
+}
+
+.analytics {
+    padding: 80px 0;
+}
+
+.analytics-header {
+    margin-bottom: 40px;
+}
+
+.analytics-header h2 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+}
+
+.kpi-card {
+    border: 1px solid #313133;
+    border-radius: 12px;
+    padding: 16px;
+    background: #1C1C1E;
+}
+
+.kpi-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #6b7280;
+    letter-spacing: 0.05em;
+}
+
+.kpi-value {
+    display: block;
+    font-size: 1.6rem;
+    margin: 8px 0;
+}
+
+.kpi-trend {
+    font-size: 0.85rem;
+}
+
+.kpi-trend.up {
+    color: #16a34a;
+}
+
+.kpi-trend.down {
+    color: #dc2626;
+}
+
+.kpi-trend.neutral {
+    color: #6b7280;
+}
+
+/* Gráficos */
+.charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+.chart-card {
+    border: 1px solid #313133;
+    border-radius: 12px;
+    padding: 24px;
+    background: #1C1C1E;
+}
+
+.chart-card h4 {
+    margin-bottom: 16px;
+    font-size: 1rem;
+}
+
+/* Bar chart fake */
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    height: 180px;
+}
+
+.bar {
+    flex: 1;
+    background: #1c7034;
+    border-radius: 6px 6px 0 0;
+    opacity: 0.85;
+}
+
+/* Line chart fake */
+.line-chart {
+    height: 180px;
+    border-bottom: 2px solid #2c422f;
+    position: relative;
+}
+
+.line-chart span {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,
+            transparent 45%,
+            #1c7034 45%,
+            #1c7034 48%,
+            transparent 48%);
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
