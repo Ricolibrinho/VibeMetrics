@@ -43,37 +43,38 @@ async function getAccessTokenOrRedirect() {
   return session.access_token;
 }
 
-async function loadYouTubeStatus(user) {
-  const ytStatus = $("ytStatus");
-  const connectBtn = $("connectYouTubeBtn");
-  const disconnectBtn = $("disconnectYouTubeBtn");
+async function connectYouTube() {
+  // garante sessão
+  const { data: sess } = await supabaseClient.auth.getSession();
+  const token = sess?.session?.access_token;
 
-  const { data, error } = await supabaseClient
-    .from("social_connections")
-    .select("*")
-    .eq("user_id", user.id)
-    .eq("provider", "youtube")
-    .maybeSingle();
-
-  if (error) {
-    ytStatus.textContent = "Erro";
-    ytStatus.className = "badge danger";
-    console.error(error);
+  if (!token) {
+    window.location.href = "../login.html";
     return;
   }
 
-  if (data) {
-    ytStatus.textContent = "Conectado";
-    ytStatus.className = "badge success";
-    connectBtn.disabled = true;
-    disconnectBtn.disabled = false;
-  } else {
-    ytStatus.textContent = "Desconectado";
-    ytStatus.className = "badge";
-    connectBtn.disabled = false;
-    disconnectBtn.disabled = true;
+  // chama a Edge Function com o SDK (ele injeta o JWT correto)
+  const { data, error } = await supabaseClient.functions.invoke("oauth-youtube-start", {
+    method: "POST",
+    body: {},
+  });
+
+  if (error) {
+    console.error("invoke error:", error);
+    alert(`Erro ao iniciar conexão: ${error.message}`);
+    return;
   }
+
+  if (!data?.url) {
+    console.error("no url returned:", data);
+    alert("Edge Function não retornou a URL do Google.");
+    return;
+  }
+
+  window.location.href = data.url;
 }
+
+window.connectYouTube = connectYouTube;
 
 async function connectYouTube() {
   const { data } = await supabaseClient.auth.getSession();
@@ -143,3 +144,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   await loadYouTubeStatus(user);
 });
+
