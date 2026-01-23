@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin • Dashboard</title>
+
+  <link rel="stylesheet" href="../styles/layout.css" />
+  <link rel="stylesheet" href="../styles/theme.css" />
+</head>
+
+<body>
+  <div class="grid" aria-hidden="true"></div>
+
+  <main class="page">
+    <section class="card" style="width:min(900px,100%)">
+      <div class="row">
+        <div>
+          <h1 class="title" style="margin:0">Admin Dashboard</h1>
+          <p class="subtitle" style="margin:6px 0 0">Visão geral</p>
+        </div>
+        <button class="btn" id="logoutBtn" type="button" style="height:44px">Sair</button>
+      </div>
+
+      <div class="stack" style="margin-top:16px">
+        <table class="table">
+          <thead>
+            <tr><th>Métrica</th><th>Valor</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Clientes</td><td id="kpiClients">—</td></tr>
+            <tr><td>Promotores</td><td id="kpiPromoters">—</td></tr>
+            <tr><td>Fotos</td><td id="kpiPhotos">—</td></tr>
+          </tbody>
+        </table>
+        <p class="toast" id="toast"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="../scripts/boot.js"></script>
+  <script>
+    // carrega o js do admin após o boot montar db
+    (function waitDb(){
+      if (!window.db) return setTimeout(waitDb, 50);
+      const s = document.createElement("script");
+      s.src = "../scripts/adm-dashboard.js";
+      document.body.appendChild(s);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+:root{
+  --bg1:#071423;
+  --bg2:#0a1c2f;
+  --card: rgba(255,255,255,.06);
+  --stroke: rgba(255,255,255,.16);
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.65);
+  --brand:#f08a2a;
+  --shadow: 0 20px 60px rgba(0,0,0,.5);
+  --inputBg: rgba(0,0,0,.20);
+  --gridLine: rgba(255,255,255,.05);
+}
+
+html[data-theme="light"]{
+  --bg1:#f5f7fb;
+  --bg2:#eef2f8;
+  --card: rgba(17,24,39,.05);
+  --stroke: rgba(17,24,39,.12);
+  --text: rgba(17,24,39,.92);
+  --muted: rgba(17,24,39,.60);
+  --shadow: 0 18px 50px rgba(17,24,39,.15);
+  --inputBg: rgba(255,255,255,.78);
+  --gridLine: rgba(17,24,39,.06);
+}
+
+body{
+  color:var(--text);
+  background:
+    radial-gradient(900px 600px at 20% 20%, rgba(240,138,42,.16), transparent 60%),
+    radial-gradient(900px 600px at 80% 30%, rgba(77,163,255,.12), transparent 60%),
+    linear-gradient(180deg,var(--bg1),var(--bg2));
+}
+
+.grid{
+  position:fixed; inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(to right, var(--gridLine) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--gridLine) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity:.65;
+}
+
+.card{
+  background: linear-gradient(180deg, var(--card), rgba(255,255,255,.03));
+  border:1px solid var(--stroke);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}

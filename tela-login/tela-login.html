@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login • Top Varejistas</title>
+
+  <link rel="stylesheet" href="../styles/layout.css" />
+  <link rel="stylesheet" href="../styles/theme.css" />
+  <link rel="stylesheet" href="../styles/login.css" />
+</head>
+
+<body>
+  <div class="grid" aria-hidden="true"></div>
+
+  <main class="page">
+    <section class="card">
+      <div class="row">
+        <div>
+          <h1 class="title">LOGIN</h1>
+          <p class="subtitle">Acesse sua conta para continuar</p>
+        </div>
+
+        <button class="themeBtn" id="themeToggle" type="button">
+          <span id="themeIcon">🌙</span>
+          <span id="themeText">Dark</span>
+        </button>
+      </div>
+
+      <form id="loginForm" class="stack" style="margin-top:18px">
+        <div class="field">
+          <label class="label" for="email">E-mail</label>
+          <input class="input" id="email" type="email" autocomplete="username" required />
+        </div>
+
+        <div class="field">
+          <label class="label" for="password">Senha</label>
+          <input class="input" id="password" type="password" autocomplete="current-password" required minlength="6" />
+        </div>
+
+        <button class="btn" id="submitBtn" type="submit">Entrar</button>
+        <p class="toast" id="toast"></p>
+      </form>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../scripts/connect-data.js"></script>
+  <script src="../scripts/login.js"></script>
+</body>
+</html>
